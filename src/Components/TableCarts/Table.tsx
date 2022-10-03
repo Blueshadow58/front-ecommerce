@@ -2,41 +2,27 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 
 
-function TableComp(props: any) {
+function TableCartComp(props: any) {
 
     return (
-
         <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>codigo</th>
-                    <th>Descripcion</th>
-                    <th>Foto</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
                 </tr>
             </thead>
             <tbody>
-                {props.products.map((p: any, index: number) => (
+                {props.carts.map((cart: any, index: number) => (
                     <tr key={index}>
-                        <td>{p.id}</td>
-                        <td>{p.codigo}</td>
-                        <td>{p.descripcion}</td>
-                        <td>{p.foto}</td>
-                        <td>{p.nombre}</td>
-                        <td>{p.precio}</td>
-                        <td>{p.stock}</td>
-                        <td><Button onClick={() => props.deleteProduct(p.id)} variant="danger">Delete</Button></td>
-                        <td><Button onClick={() => props.settingUpdateData(p)} variant="dark" >Update</Button></td>
+                        <td>{cart}</td>
+                        <td><Button onClick={() => props.seeProducts(cart)} >See Products</Button></td>
+                        <td><Button onClick={() => props.deleteCart(cart)} variant="danger">Delete</Button></td>
                     </tr>
                 ))}
-
             </tbody>
         </Table>
 
     );
 }
 
-export default TableComp
+export default TableCartComp

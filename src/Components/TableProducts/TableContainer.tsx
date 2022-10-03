@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Container } from "react-bootstrap";
-import TableComp from './Table'
+import TableProductComp from './Table'
 import { useEffect, useState } from 'react';
 import { deleteById, getAllProducts, getById, save, update } from '../../Api/services/Product';
 import { Button } from 'react-bootstrap';
@@ -128,7 +128,7 @@ export default function TableProductContainer() {
           <Button onClick={() => saveProduct()}>Save</Button>
           {id && <Button variant='dark' onClick={() => updateProduct()}>Update</Button>}
         </div>
-        {loading ? <TableComp products={products} deleteProduct={deleteProduct} settingUpdateData={settingUpdateData} /> : <>...Loading</>}
+        {loading ? <TableProductComp products={products} deleteProduct={deleteProduct} settingUpdateData={settingUpdateData} /> : <>...Loading</>}
       </Container>
     </>
   )

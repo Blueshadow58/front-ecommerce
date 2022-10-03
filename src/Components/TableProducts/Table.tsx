@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 
 
-function TableComp(props: any) {
+function TableProductComp(props: any) {
 
   return (
 
@@ -29,7 +29,9 @@ function TableComp(props: any) {
             <td>{p.precio}</td>
             <td>{p.stock}</td>
             <td><Button onClick={() => props.deleteProduct(p.id)} variant="danger">Delete</Button></td>
-            <td><Button onClick={() => props.settingUpdateData(p)} variant="dark" >Update</Button></td>
+            {props.settingUpdateData !== undefined ? <td><Button onClick={() => props.settingUpdateData(p)} variant="dark" >Update</Button></td> : null}
+
+
           </tr>
         ))}
 
@@ -39,4 +41,4 @@ function TableComp(props: any) {
   );
 }
 
-export default TableComp
+export default TableProductComp
