@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { deleteById, getAllProducts, getById, save, update } from '../../Api/services/Product';
 import { Button } from 'react-bootstrap';
 
-export default function TableProductContainer() {
+export default function TableProductContainer(props: any) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
   const [reload, setReload] = useState(false)
@@ -17,6 +17,10 @@ export default function TableProductContainer() {
   const refInputName: any = useRef(null);
   const refInputPrice: any = useRef(null);
   const refInputStock: any = useRef(null);
+
+  useEffect(() => {
+    props.funcNav(true)
+  }, [props])
 
   useEffect(() => {
     setLoading(false)
