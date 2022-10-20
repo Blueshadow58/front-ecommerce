@@ -9,7 +9,7 @@ export default function Login(props: any) {
     const navigate = useNavigate()
     const inputName: any = useRef(null)
     const inputPassword: any = useRef(null)
-    const { settingAuth } = useContext(AuthContext)
+    const { settingAuth }: any = useContext(AuthContext)
 
     useEffect(() => {
         props.funcNav(false)
@@ -22,15 +22,10 @@ export default function Login(props: any) {
         }
 
         loginApi(user).then(data => {
-
             if (data) {
-
                 settingAuth(data)
-
                 navigate('/products')
             }
-
-
         })
     }
 
@@ -40,6 +35,8 @@ export default function Login(props: any) {
             <input ref={inputName} type="text" placeholder='nombre' />
             <input ref={inputPassword} type="text" placeholder='clave' />
             <Button onClick={() => loginBtn()}>Enviar</Button>
+
+
 
             <div className="pt-5">
                 <Button onClick={() => navigate('/register')}>Ir al registro</Button>

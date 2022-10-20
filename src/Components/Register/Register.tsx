@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import React, { useRef, useState } from 'react'
+import { Alert, Button } from 'react-bootstrap'
 import { registerApi } from '../../Api/services/Auth'
 import { useNavigate } from 'react-router-dom';
 export default function Register() {
     const navigate = useNavigate()
     const inputName: any = useRef(null)
     const inputPassword: any = useRef(null)
-
-    // const [boolean, setBoolean] = useState(false)
-
-
+    const [alert, setAlert] = useState(false)
 
 
     const registerBtn = () => {
@@ -19,15 +16,11 @@ export default function Register() {
         }
 
         registerApi(user).then(value => {
-
-            console.log(value)
-            if (!value) {
+            if (value) {
                 navigate('/')
             }
+            setAlert(true)
         })
-
-
-
     }
 
     return (
@@ -36,7 +29,7 @@ export default function Register() {
             <input ref={inputName} type="text" placeholder='nombre' />
             <input ref={inputPassword} type="text" placeholder='clave' />
             <Button onClick={() => registerBtn()}>Enviar</Button>
-
+            {alert && <Alert variant={'success'} >Este usuario ya existe</Alert>}
             <div className="pt-5">
                 <Button onClick={() => navigate('/')}>Ir al login</Button>
             </div>

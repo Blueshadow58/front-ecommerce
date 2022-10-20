@@ -1,16 +1,18 @@
 import { useState, createContext } from "react";
+import Cookies from 'universal-cookie'
 
-
-export const AuthContext = createContext({})
+export const AuthContext: any = createContext({})
 
 
 const AuthProvider = ({ children }: any) => {
-    const [auth, setAuth] = useState([])
+    const [auth, setAuth]: any = useState([])
 
     const settingAuth = (data: any) => {
         setAuth(data)
-        return auth
+        const cookie = new Cookies();
+        cookie.set('user', data, { path: '/', maxAge: 60000 })
     }
+
 
 
     const valueToShare = {
