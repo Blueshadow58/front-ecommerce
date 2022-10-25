@@ -15,6 +15,10 @@ export default function Login(props: any) {
         props.funcNav(false)
     }, [props])
 
+    const showLoginError = () => {
+        navigate('/login-error')
+    }
+
     const loginBtn = async () => {
         const user = {
             name: inputName.current.value,
@@ -25,7 +29,10 @@ export default function Login(props: any) {
             if (data) {
                 settingAuth(data)
                 navigate('/products')
+            } else {
+                showLoginError()
             }
+
         })
     }
 

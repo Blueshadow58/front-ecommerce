@@ -6,8 +6,12 @@ export default function Register() {
     const navigate = useNavigate()
     const inputName: any = useRef(null)
     const inputPassword: any = useRef(null)
-    const [alert, setAlert] = useState(false)
 
+
+    const showRegisterError = () => {
+        navigate('/register-error')
+
+    }
 
     const registerBtn = () => {
         const user = {
@@ -16,10 +20,14 @@ export default function Register() {
         }
 
         registerApi(user).then(value => {
+
             if (value) {
+
                 navigate('/')
+            } else {
+                showRegisterError()
             }
-            setAlert(true)
+
         })
     }
 
@@ -29,7 +37,7 @@ export default function Register() {
             <input ref={inputName} type="text" placeholder='nombre' />
             <input ref={inputPassword} type="text" placeholder='clave' />
             <Button onClick={() => registerBtn()}>Enviar</Button>
-            {alert && <Alert variant={'success'} >Este usuario ya existe</Alert>}
+            {/* {alert && <Alert variant={'success'} >Este usuario ya existe</Alert>} */}
             <div className="pt-5">
                 <Button onClick={() => navigate('/')}>Ir al login</Button>
             </div>
